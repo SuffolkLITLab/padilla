@@ -53,7 +53,7 @@
 	</div>
 	
 	
-	<iframe width="100%" height="200px" src="https://suffolklitlab.org/padilla/QnA.html" class="QnA"></iframe>
+	<iframe id="QnA" width="100%" height="200px" src="https://suffolklitlab.org/padilla/QnA.html" class="QnA"></iframe>
 	
 	
 	<div data-role="content" class="content" style="display:none;">
@@ -90,7 +90,7 @@
 <div data-role="page" id="about">
 	<div data-role="header" data-position="fixed">
 		<h1>About</h1>
-		<a href="#filter" data-rel="back" data-transition="slide" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-arrow-l ui-btn-icon-notext"></a>
+		<a href="#filter" data-transition="slide" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-arrow-l ui-btn-icon-notext"></a>
 	</div>
 	<div data-role="content" class="content">
 		<p>[info]</p>
@@ -129,7 +129,7 @@
 	</div>
 		<div data-role="content" class="content">
 				<h1 id="town_name"></h1>
-				<form class="ui-filterable">
+				<form id="searchbar" class="ui-filterable">
 					<input id="filterBasic-input" data-type="search">
 				</form>
 				<ul id="org_list" data-role="listview" data-inset="true" data-filter="true" data-input="#filterBasic-input">
@@ -265,6 +265,7 @@
 
 		if ($('#town').find(":selected").val() != 0 && !isNaN(Number($('#age').val())) ) {
 				$("#org_list").html("");
+				$("#searchbar").html("<input id=\"filterBasic-input\" data-type=\"search\">");
 				$("#org_geo_list").html("<li id=\"ge0_points\" v-for=\"item in items\">{{ item['id'] }},{{ item['fields']['Name'] }},{{ item['fields']['Latitude'] }},{{ item['fields']['Longitude'] }}</li>");
 
 				categories = "";
@@ -288,7 +289,7 @@
 
 				$('#town_name').html($('#town').find(":selected").text());
 
-		    load_api_data('#results',2);
+				load_api_data('#results',2);
 
 				geo_data = $('#town').find(":selected").val().split(',').map(Number);
 				//console.log(geo_data)
