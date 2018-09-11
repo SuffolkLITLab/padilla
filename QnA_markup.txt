@@ -7,15 +7,15 @@ A: Conduct a guided interview.
 	Q(1.1):GOTO:interview
 A: Find an immigration attorney.
 	Q(region): Pick a region?
-	A[javascript:$("#town").val("42.3401,-71.0689,13")]: El Paso County
+	A[javascript:parent.$("#town").val("42.3401,-71.0689,13")]: El Paso County
 		Q(1.2.1):GOTO:view
-	A[javascript:$("#town").val("42.3918,-71.0398456,14")]: Hudspeth County
+	A[javascript:parent.$("#town").val("42.3918,-71.0398456,14")]: Hudspeth County
 		Q(1.2.2):GOTO:view
 
 Q(view): Would you like a list or a map?
-A[javascript:$("#radio-choice-h-2a").prop('checked', true);$("#radio-choice-h-2b").prop('checked', false);list_page();results_page();]: List
+A[javascript:parent.$("#radio-choice-h-2a").prop('checked', true);parent.$("#radio-choice-h-2b").prop('checked', false);parent.list_page();parent.results_page();]: List
 	Q(2.1):GOTO:1
-A[javascript:$("#radio-choice-h-2a").prop('checked', false);$("#radio-choice-h-2b").prop('checked', true);list_page();results_page();]: Map
+A[javascript:parent.$("#radio-choice-h-2a").prop('checked', false);parent.$("#radio-choice-h-2b").prop('checked', true);parent.list_page();parent.results_page();]: Map
 	Q(2.2):GOTO:1
 
 Q(interview): Questions go here
