@@ -25,17 +25,23 @@
         	$.mobile.hashListeningEnabled = false;
         	$.mobile.pushStateEnabled = false;
     	});
+		$(this).css({'background-color':'white'});
 	</script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<style>
+		.ui-page, .ui-page-theme-a, .ui-page-header-fixed, .ui-page-active {
+			background:white;
+
+		}
 		.content {
 			text-align:left;
 			max-width:700px;
 			margin:0 auto 0 auto;
-			padding:0 15px 25px 15px
+			padding:0 15px 25px 15px;
 		}
 		.QnA {
 			height: calc(100vh - 50px);
+			padding-top:10px;
 			border:0px
 		}
 	</style>
@@ -49,7 +55,7 @@
 	</div>
 	
 	
-	<iframe width="100%" height="200px" src="QnA.html" class="QnA"></iframe>
+	<iframe width="100%" height="200px" src="https://suffolklitlab.org/padilla/QnA.html" class="QnA"></iframe>
 	
 	
 	<div data-role="content" class="content" style="display:none;">
@@ -86,13 +92,12 @@
 <div data-role="page" id="about">
 	<div data-role="header" data-position="fixed">
 		<h1>About</h1>
-		<a href="#" data-rel="back" data-transition="slide" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-arrow-l ui-btn-icon-notext"></a>
+		<a href="#filter" data-rel="back" data-transition="slide" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-arrow-l ui-btn-icon-notext"></a>
 	</div>
 	<div data-role="content" class="content">
-		<p> Nicole Siino is the Legal Innovation and Technology Fellow in the Juvenile Defender Clinic at Suffolk University Law School. In addition to representing juveniles in juvenile delinquency matters, Nicole created this Juvenile Resource Finder after discovering there was no comprehensive list of resources that juveniles can benefit from. Nicole is in her last year of law school and hopes to pursue a career in public interest law. In addition to being a Student Attorney and a Legal Innovation and Technology Fellow, she is a Content Editor on the Journal of High Technology Law.</p>
-		<p> This web app contains a comprehensive list of juvenile programs & services to help to provide access to justice. The use of the app allows juveniles to find and successfully participate in these programs which can have long-lasting impacts on their sentences - and their futures. The app enables its users to quickly search and find juvenile resources while in court, on the go, or sitting in an office.</p>
+		<p>[info]</p>
 		<p> You can check out the <a href="https://www.suffolklitlab.org">Suffolk Lit Lab's</a> website to see other LIT projects!</p>
-		<p> This website application runs of the data from this <a href="https://airtable.com/invite/l?inviteId=invNi18Brb4LgHUTU&inviteToken=d74b5b443352026378882c4ed93f1c90ec1f748b61f1829d8519d0a167d9d7b1">Airtable</a>. If you find any errors, please <a href="mailto:litlab@suffolk\.edu">Email</a> the Suffolk LIT Lab.</p>
+		<p> This website application runs off the data from this <a href="https://airtable.com/invite/l?inviteId=invNi18Brb4LgHUTU&inviteToken=d74b5b443352026378882c4ed93f1c90ec1f748b61f1829d8519d0a167d9d7b1">Airtable</a>. If you find any errors, please <a href="mailto:litlab@suffolk\.edu">Email</a> the Suffolk LIT Lab.</p>
 		<p style="text-align:center"><a href="https://suffolklitlab.org/" target="_blank"><img src="images/LIT_logo.png" width="200px"/ border="0"></a></p>
 
 	</div>
@@ -126,7 +131,10 @@
 	</div>
 		<div data-role="content" class="content">
 				<h1 id="town_name"></h1>
-				<ul id="org_list" data-role="listview" data-inset="true">
+				<form class="ui-filterable">
+					<input id="filterBasic-input" data-type="search">
+				</form>
+				<ul id="org_list" data-role="listview" data-inset="true" data-filter="true" data-input="#filterBasic-input">
 				</ul>
 		</div>
 

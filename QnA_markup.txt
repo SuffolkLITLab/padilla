@@ -1,0 +1,24 @@
+Before:
+<p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
+<p>Answer the following questions to... <a href="javascript:">Learn more</a>.</p>
+
+Q(1): What would you like to do?
+A: Conduct a guided interview.
+	Q(1.1):GOTO:interview
+A: Find an immigration attorney.
+	Q(region): Pick a region?
+	A[javascript:$("#town").val("42.3401,-71.0689,13")]: El Paso County
+		Q(1.2.1):GOTO:view
+	A[javascript:$("#town").val("42.3918,-71.0398456,14")]: Hudspeth County
+		Q(1.2.2):GOTO:view
+
+Q(view): Would you like a list or a map?
+A[javascript:$("#radio-choice-h-2a").prop('checked', true);$("#radio-choice-h-2b").prop('checked', false);list_page();results_page();]: List
+	Q(2.1):GOTO:1
+A[javascript:$("#radio-choice-h-2a").prop('checked', false);$("#radio-choice-h-2b").prop('checked', true);list_page();results_page();]: Map
+	Q(2.2):GOTO:1
+
+Q(interview): Questions go here
+A: track one
+A: track two
+	Q(3.2):You should consult with an immigration attorney. GOTO:region
