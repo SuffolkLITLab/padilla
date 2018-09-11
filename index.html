@@ -26,7 +26,7 @@
         	$.mobile.pushStateEnabled = false;
     	});
 		$(this).css({'background-color':'white'});
-		$(document).on('pageshow','#filter',function(event, ui){
+		$(document).on('pagebeforeshow ','#filter',function(event, ui){
 		  $('#QnA').contents().scrollTop($('#QnA').contents().height());
 		});
 	</script>
