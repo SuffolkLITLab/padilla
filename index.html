@@ -39,8 +39,7 @@
 			padding:0 15px 25px 15px;
 		}
 		.QnA {
-			//height: calc(100vh - 46px);
-			height: 100vh;
+			height: calc(100vh - 46px);
 			border:0px;
 			
 		}
@@ -48,15 +47,15 @@
 </head>
 <body>
 
-<div data-role="page" id="filter" style="overflow:auto;-webkit-overflow-scrolling:touch">
+<div data-role="page" id="filter" >
 	<div data-role="header" data-position="fixed">
 		<h1>Padilla Tool</h1>
 		<a href="#about" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-right" data-transition="slide"></a>
 	</div>
 	
-	
+	<div style="overflow: auto!important; -webkit-overflow-scrolling: touch!important;"> 
 	<iframe id="QnA" name="QnA" width="100%" height="200px" src="https://suffolklitlab.org/padilla/QnA.html" scrolling="yes" class="QnA"></iframe>
-	
+	</div>
 	
 	<div data-role="content" class="content" style="display:none;">
 		<div class="ui-field-contain">Use the following selections to find juvenile social, community based programs & services in and around Boston.
