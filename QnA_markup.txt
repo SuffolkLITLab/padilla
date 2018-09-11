@@ -1,6 +1,6 @@
 Before:
 <p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
-<p>Answer the following questions to... <a href="javascript:parent.$.mobile.changePage($('#about'), { transition: 'slide'})">Learn more</a>.</p>
+<p>Answer the following questions to... <a href="javascript:$.mobile.changePage($('#about', parent.document), { transition: 'slide'})">Learn more</a>.</p>
 
 Q(1): What would you like to do?
 A: Conduct a guided interview.
