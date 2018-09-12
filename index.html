@@ -29,9 +29,6 @@
 		$(document).on('pageshow','#filter',function(event, ui){
 		  $('#QnA').contents().scrollTop($('#QnA').contents().height());
 		});
-		if ("ontouchstart" in document.documentElement){
-			$('html').addClass('touch');
-		}
 	</script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<style>
@@ -43,11 +40,6 @@
 			max-width:700px;
 			margin:0 auto 0 auto;
 			padding:0 15px 25px 15px;
-		}
-		.touch {
-		height: 90%;
-		-webkit-overflow-scrolling: touch !important;
-		overflow: scroll !important;
 		}
 		.scroll-wrapper {
 			height: calc(100vh - 46px);
