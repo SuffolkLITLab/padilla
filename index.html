@@ -27,7 +27,7 @@
     	});
 		$(this).css({'background-color':'white'});
 		$(document).on('pageshow','#filter',function(event, ui){
-		  $('#QnA').height( window.innerHeight - 45 +  'px');
+		  $('#QnA').height( window.innerHeight - 50 +  'px');
 		  $('#QnA').contents().scrollTop($('#QnA').contents().height());
 		});
 	</script>
@@ -49,6 +49,7 @@
 		}
 		.QnA {
 			//height: calc(100vh - 46px);
+			//height:100%
 			border:0px;
 			overflow:hidden;
 			
@@ -63,9 +64,7 @@
 		<a href="#about" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-right" data-transition="slide"></a>
 	</div>
 	
-	<div id="wrapper" class="scroll-wrapper">
-		<iframe id="QnA" name="QnA" width="100%" src="https://suffolklitlab.org/padilla/QnA.html" class="QnA"></iframe>
-	</div>
+	<iframe id="QnA" name="QnA" width="100%" src="https://suffolklitlab.org/padilla/QnA.html" frameBorder="0" class="QnA"></iframe>
 	
 	<div data-role="content" class="content" style="display:none;">
 		<div class="ui-field-contain">Use the following selections to find juvenile social, community based programs & services in and around Boston.
