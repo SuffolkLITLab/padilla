@@ -27,6 +27,7 @@
     	});
 		$(this).css({'background-color':'white'});
 		$(document).on('pageshow','#filter',function(event, ui){
+		  $('#QnA').height( window.innerHeight - 45 +  'px');
 		  $('#QnA').contents().scrollTop($('#QnA').contents().height());
 		});
 	</script>
@@ -42,13 +43,14 @@
 			padding:0 15px 25px 15px;
 		}
 		.scroll-wrapper {
-			height: calc(100vh - 46px);
+			//height: calc(100vh - 46px);
 			-webkit-overflow-scrolling: touch;
 			overflow-y: scroll;
 		}
 		.QnA {
-			height: calc(100vh - 46px);
+			//height: calc(100vh - 46px);
 			border:0px;
+			overflow:hidden;
 			
 		}
 	</style>
@@ -61,10 +63,8 @@
 		<a href="#about" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-right" data-transition="slide"></a>
 	</div>
 	
-	
-
-	<div class="scroll-wrapper">
-		<iframe id="QnA" name="QnA" width="100%" height="200px" src="https://suffolklitlab.org/padilla/QnA.html" scrolling="yes" class="QnA"></iframe>
+	<div id="wrapper" class="scroll-wrapper">
+		<iframe id="QnA" name="QnA" width="100%" src="https://suffolklitlab.org/padilla/QnA.html" class="QnA"></iframe>
 	</div>
 	
 	<div data-role="content" class="content" style="display:none;">
