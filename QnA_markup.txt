@@ -1,6 +1,6 @@
 Before:
 <p style="background:yellow;padding:8px;margin:20px 0 0 0;">This project is in early development. You should not rely on it as a source of legal information. <b>It is likely incomplete</b>.</p>
-<p>Answer the following questions to... <a href="javascript:parent.$.mobile.changePage($('#about'), { transition: 'slide'})">Learn more</a>.</p>
+<p>Answer the following questions to [brief description here]</p>
 
 Q(1): What would you like to do?
 A: Conduct a guided interview.
