@@ -7,9 +7,9 @@ A: Conduct a guided interview.
 	Q(1.1):GOTO:interview
 A: Find an immigration attorney.
 	Q(region): Pick a region?
-	A[javascript:parent.$('#town').val('42.3401,-71.0689,13')]: El Paso County
+	A[javascript:parent.$('#town').val('31.6945388,-106.5801766,10')]: El Paso County
 		Q(1.2.1):GOTO:view
-	A[javascript:parent.$('#town').val('42.3918,-71.0398456,14')]: Hudspeth County
+	A[javascript:parent.$('#town').val('31.3145064,-106.0130177,9')]: Hudspeth County
 		Q(1.2.2):GOTO:view
 
 Q(view): Would you like a list or a map?
