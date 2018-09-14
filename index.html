@@ -69,6 +69,7 @@
 	<div data-role="content" class="content" style="display:none;">
 		<div class="ui-field-contain">Use the following selections to find juvenile social, community based programs & services in and around Boston.
 			<select id="town" name="select-native-1" id="select-native-1" style="width:100%" onChange="parent.list_page();results_page();">
+				<option value="31.6945388,-106.5801766,10">El Paso</option>
         		<option value="0">Choose a Location</option>
 				<option id="loading_selection" value="0">Loading Locations...</option>
 				<option v-for="item in items" v-bind:value="item['fields']['Latitude, Longitude, Zoom']">{{ item['fields']['Name'] }}</option>
