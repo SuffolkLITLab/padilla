@@ -26,6 +26,10 @@
         	$.mobile.pushStateEnabled = false;
     	});
 		$(this).css({'background-color':'white'});
+		$(document).on('pageshow','#filter',function(event, ui){
+		  $('#QnA').height( window.innerHeight - 46 +  'px');
+		  $('#QnA').contents().scrollTop($('#QnA').contents().height());
+		});
 	</script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<style>
@@ -38,31 +42,36 @@
 			margin:0 auto 0 auto;
 			padding:0 15px 25px 15px;
 		}
+		.scroll-wrapper {
+			//height: calc(100vh - 46px);
+			-webkit-overflow-scrolling: touch;
+			overflow-y: scroll;
+		}
 		.QnA {
-			height: calc(100vh - 46px);
-			border:0px
+			//height: calc(100vh - 46px);
+			//height:100%
+			border:0px;
+			overflow:hidden;
+			
 		}
 	</style>
 </head>
 <body>
 
-<div data-role="page" id="filter">
+<div data-role="page" id="filter" >
 	<div data-role="header" data-position="fixed">
 		<h1>Padilla Tool</h1>
 		<a href="#about" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all ui-btn-right" data-transition="slide"></a>
 	</div>
 	
-	
-	<iframe width="100%" height="200px" src="https://suffolklitlab.org/padilla/QnA.html" class="QnA"></iframe>
-	
+	<iframe id="QnA" name="QnA" width="100%" src="https://suffolklitlab.org/padilla/QnA.html" frameBorder="0" class="QnA"></iframe>
 	
 	<div data-role="content" class="content" style="display:none;">
 		<div class="ui-field-contain">Use the following selections to find juvenile social, community based programs & services in and around Boston.
 			<select id="town" name="select-native-1" id="select-native-1" style="width:100%" onChange="parent.list_page();results_page();">
-				<option value="42.3401,-71.0689,13">Downtown Boston</option>
         		<option value="0">Choose a Location</option>
-						<option id="loading_selection" value="0">Loading Locations...</option>
-						<option v-for="item in items" v-bind:value="item['fields']['Latitude, Longitude, Zoom']">{{ item['fields']['Name'] }}</option>
+				<option id="loading_selection" value="0">Loading Locations...</option>
+				<option v-for="item in items" v-bind:value="item['fields']['Latitude, Longitude, Zoom']">{{ item['fields']['Name'] }}</option>
     		</select>
 		</div>
 
@@ -90,12 +99,12 @@
 <div data-role="page" id="about">
 	<div data-role="header" data-position="fixed">
 		<h1>About</h1>
-		<a href="#filter" data-rel="back" data-transition="slide" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-arrow-l ui-btn-icon-notext"></a>
+		<a href="#filter" data-transition="slide" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-arrow-l ui-btn-icon-notext"></a>
 	</div>
 	<div data-role="content" class="content">
 		<p>[info]</p>
 		<p> You can check out the <a href="https://www.suffolklitlab.org">Suffolk Lit Lab's</a> website to see other LIT projects!</p>
-		<p> This website application runs off the data from this <a href="https://airtable.com/invite/l?inviteId=invNi18Brb4LgHUTU&inviteToken=d74b5b443352026378882c4ed93f1c90ec1f748b61f1829d8519d0a167d9d7b1">Airtable</a>. If you find any errors, please <a href="mailto:litlab@suffolk\.edu">Email</a> the Suffolk LIT Lab.</p>
+		<p> This website application runs off the data from this <a href="https://airtable.com/invite/l?inviteId=invtogTCDjUBP5hRO&inviteToken=eb82d6e6324d62b5566f00ee2d2578c727a49551c0d9f1e267673dd15ce9272f">Airtable</a>. If you find any errors, please <a href="mailto:litlab@suffolk\.edu">Email</a> the Suffolk LIT Lab.</p>
 		<p style="text-align:center"><a href="https://suffolklitlab.org/" target="_blank"><img src="images/LIT_logo.png" width="200px"/ border="0"></a></p>
 
 	</div>
@@ -129,7 +138,7 @@
 	</div>
 		<div data-role="content" class="content">
 				<h1 id="town_name"></h1>
-				<form class="ui-filterable">
+				<form id="searchbar" class="ui-filterable">
 					<input id="filterBasic-input" data-type="search">
 				</form>
 				<ul id="org_list" data-role="listview" data-inset="true" data-filter="true" data-input="#filterBasic-input">
@@ -167,8 +176,8 @@
 
 <script type="text/javascript">
 
-	var app_id = "appHUknSmoIogemD5";
-	var app_key = "keyHtA4JdvolTnmFV";
+	var app_id = "appwR8K8iHV6GHGOZ";
+	var app_key = "key61PDo2eamU4pfZ";
 	var cat_names = [["Outreach","Community Outreach"],["Counseling","Counseling"],["Training","Job Opportunities/Training"],["Health","Health Services"],["Risk","High Risk"],["Multi","Multi-Service"]];
 
 	var categories = "";
@@ -176,11 +185,11 @@
 	var work = 0;
 
 	function load_first() {
-			cat_names.forEach((cat, index) => {
-					$("#categories").html( $("#categories").html() + "<input type=\"checkbox\" name=\"checkbox-v-"+cat[0]+"\" id=\"checkbox-v-"+cat[0]+"\" onChange=\"list_page();\" checked=\"checked\">");
-					$("#categories").html( $("#categories").html() + "<label for=\"checkbox-v-"+cat[0]+"\">"+cat[1]+"</label>");
-			});
-			$( '#categories' ).enhanceWithin();
+			//cat_names.forEach((cat, index) => {
+			//		$("#categories").html( $("#categories").html() + "<input type=\"checkbox\" name=\"checkbox-v-"+cat[0]+"\" id=\"checkbox-v-"+cat[0]+"\" onChange=\"list_page();\" checked=\"checked\">");
+			//		$("#categories").html( $("#categories").html() + "<label for=\"checkbox-v-"+cat[0]+"\">"+cat[1]+"</label>");
+			//});
+			//$( '#categories' ).enhanceWithin();
 			load_api_data('#filter',0);
 	}
 
@@ -194,7 +203,7 @@
 		} else if (mode == 1) {
 			apicall = "https://api.airtable.com/v0/"+app_id+"/Categories/?sort[0][field]=Name&sort[0][direction]=asc";
 		} else if (mode == 2) {
-			apicall = "https://api.airtable.com/v0/"+app_id+"/" + $('#town').find(":selected").text() + "/?filterByFormula=AND("+ages+"OR("+categories+"))&sort[0][field]=Name&sort[0][direction]=asc";
+			apicall = "https://api.airtable.com/v0/"+app_id+"/" + $('#town').find(":selected").text() + "/?sort[0][field]=Name&sort[0][direction]=asc";
 		} else if (mode == 3) {
 			apicall = "https://api.airtable.com/v0/"+app_id+"/" + $('#town').find(":selected").text() + "/?filterByFormula=(RECORD_ID()=\""+id+"\")";
 		}
@@ -236,10 +245,8 @@
 			alert('You must choose a location.');
 		} else if ( isNaN(Number($('#age').val())) ) {
 			alert('You must enter a numeric age (in years) or leave blank.')
-		} else if ($('#checkbox-v-Outreach').is(":checked") || $('#checkbox-v-Counseling').is(":checked") || $('#checkbox-v-Risk').is(":checked") || $('#checkbox-v-Training').is(":checked") || $('#checkbox-v-Health').is(":checked") || $('#checkbox-v-Multi').is(":checked")) {
+		} else {
 			next_page_1()
-    } else {
-			alert('You must choose at least one type of service.')
 		}
 	}
 
@@ -265,20 +272,21 @@
 
 		if ($('#town').find(":selected").val() != 0 && !isNaN(Number($('#age').val())) ) {
 				$("#org_list").html("");
+				$("#searchbar").html("<input id=\"filterBasic-input\" data-type=\"search\">");
 				$("#org_geo_list").html("<li id=\"ge0_points\" v-for=\"item in items\">{{ item['id'] }},{{ item['fields']['Name'] }},{{ item['fields']['Latitude'] }},{{ item['fields']['Longitude'] }}</li>");
 
 				categories = "";
 
-				cat_names.forEach((cat, index) => {
-					if ($('#checkbox-v-'+cat[0]).is(":checked")){
-						$("#org_list").html( $("#org_list").html() + "<li data-role=\"list-divider\">"+cat[1]+"</li>")
-						$("#org_list").html( $("#org_list").html() + "<li v-for=\"item in items\" v-if=\"item['fields']['Category'] == '"+cat[1]+"'\"><a href=\"javascript:void('')\" v-bind:id=\"item['id']\" onClick=\"details_page(this.id);\">{{ item['fields']['Name'] }}<p>Ages: {{ item['fields']['Minimum Age'] }}-{{ item['fields']['Maximum Age'] }}; Gender(s): {{ item['fields']['Gender'] }}</p></a></li>")
-						if (categories != "") {
-							categories = categories+",";
-						}
-						categories = categories+"FIND(\""+cat[1]+"\",{Category})";
-					}
-				});
+				//cat_names.forEach((cat, index) => {
+				//	if ($('#checkbox-v-'+cat[0]).is(":checked")){
+						//$("#org_list").html( $("#org_list").html() + "<li data-role=\"list-divider\">"+cat[1]+"</li>")
+						$("#org_list").html( $("#org_list").html() + "<li v-for=\"item in items\"><a href=\"javascript:void('')\" v-bind:id=\"item['id']\" onClick=\"details_page(this.id);\">{{ item['fields']['Name'] }}</a></li>")
+				//		if (categories != "") {
+				//			categories = categories+",";
+				//		}
+				//		categories = categories+"FIND(\""+cat[1]+"\",{Category})";
+				//	}
+				//});
 
 				if ($('#age').val()=="") {
 					ages = "";
@@ -288,7 +296,7 @@
 
 				$('#town_name').html($('#town').find(":selected").text());
 
-		    load_api_data('#results',2);
+				load_api_data('#results',2);
 
 				geo_data = $('#town').find(":selected").val().split(',').map(Number);
 				//console.log(geo_data)
@@ -309,8 +317,6 @@
       	//$("#detail").attr("v-if", "item['id'] == '"+id+"'");
       	$("#detail").html("");
       	$("#detail").html($("#detail").html() + "<h3>{{ item['fields']['Name'] }}</h3>")
-      	$("#detail").html($("#detail").html() + "<h4>{{ item['fields']['Category'] }}</h4>");
-      	$("#detail").html($("#detail").html() + "<p><b>Ages:</b> {{ item['fields']['Minimum Age'] }}-{{ item['fields']['Maximum Age'] }} &nbsp;&nbsp; <b>Gender(s):</b> {{ item['fields']['Gender'] }}</p>");
 		$("#detail").html($("#detail").html() + "<p><b>Phone:</b> <a v-bind:href=\"'tel:'+item['fields']['Phone']\" target=\"_blank\">{{ item['fields']['Phone'] }}</p>");
 		$("#detail").html($("#detail").html() + "<p><b>Email:</b> <a v-bind:href=\"'mailto:'+item['fields']['Email']\" target=\"_blank\">{{ item['fields']['Email'] }}</a></p>");
       	$("#detail").html($("#detail").html() + "<p><b>Website:</b> <a v-bind:href=\"item['fields']['Website']\" target=\"_blank\">{{ item['fields']['Website'] }}</a></p>");
@@ -400,7 +406,7 @@
 
 		function size_map() {
 			initMap(lat,lon,zoomin);
-			$('#map').height( window.innerHeight - 81 +  'px');
+			$('#map').height( window.innerHeight - 79 +  'px');
 
 		}
 

@@ -1,15 +1,15 @@
 Before:
-<p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
-<p>Answer the following questions to... <a href="javascript:$.mobile.changePage($('#about', parent.document), { transition: 'slide'})">Learn more</a>.</p>
+<p style="background:yellow;padding:8px;margin:20px 0 0 0;">This project is in early development. You should not rely on it as a source of legal information. <b>It is likely incomplete</b>.</p>
+<p>Answer the following questions to [brief description here]</p>
 
 Q(1): What would you like to do?
 A: Conduct a guided interview.
 	Q(1.1):GOTO:interview
 A: Find an immigration attorney.
 	Q(region): Pick a region?
-	A[javascript:parent.$('#town').val('42.3401,-71.0689,13')]: El Paso County
+	A[javascript:parent.$('#town').val('31.6945388,-106.5801766,10')]: El Paso County
 		Q(1.2.1):GOTO:view
-	A[javascript:parent.$('#town').val('42.3918,-71.0398456,14')]: Hudspeth County
+	A[javascript:parent.$('#town').val('31.3145064,-106.0130177,9')]: Hudspeth County
 		Q(1.2.2):GOTO:view
 
 Q(view): Would you like a list or a map?
