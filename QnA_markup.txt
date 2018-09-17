@@ -3,52 +3,73 @@ Before: <input type="hidden" name="name" value="Padilla summary"/>
 <p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
 <p>Answer the following questions to determine if your client need to further consult an immigration attorney due to their criminal case <a href="javascript:$.mobile.changePage($('#about', parent.document), { transition: 'slide'})">Learn more</a>.</p>
 
-Q(1): Does your client currently have a criminal case pending?
+Q(1): What would you like to do?
+A: Conduct a guided interview.
+	Q(1.1):GOTO:interview
+A: Find an immigration attorney.
+	Q(1.2):GOTO:county
+
+Q(interview): Does your client currently have a criminal case pending?
 A: Yes
-	Q(1.1):Is your client born in the US?
+	Q(2.1):Is your client born in the US?
 	A: Yes
-		Q(1.1.1): There are no immigration concerns
+		Q(2.1.1): There are no immigration concerns. GOTO:1
 	A: No
-		Q(1.1.2): GOTO:citizen
+		Q(2.1.2):GOTO:citizen
 A: No
-	Q(1.2): This chatbot is not suitable for you.
+	Q(2.2): This chatbot is not suitable for your client. GOTO:1
 
 Q(citizen): Is your client a US citizen?
 A: Yes
-	Q(2.1): Please do further research on applicability.
+	Q(3.1): Please do further research on applicability. GOTO:1
 A: No
-	Q(2.2): GOTO:deportq
+	Q(3.2):GOTO:deportq
 	
-Q(inadmitq): Are you charged with any of these crimes? <a href="https://statelaws.findlaw.com/texas-law/texas-drug-possession-laws.html">Controlled Substances</a?; Multiple Offenses; <a href="https://statelaws.findlaw.com/texas-law/texas-prostitution-laws.html">Prostitution</a>
+Q(inadmitq): Is your client charged with any of these crimes? <a href="https://statelaws.findlaw.com/texas-law/texas-drug-possession-laws.html">Controlled Substances</a>; Multiple Offenses; <a href="https://statelaws.findlaw.com/texas-law/texas-prostitution-laws.html">Prostitution</a>
 A: Yes
-	Q(3.1): GOTO:inadmit
+	Q(4.1):GOTO:inadmit
 A: No
-	Q(3.2): Your client's criminal case should not affect his/her immigration status.
-	A:[javascript:submit2('http://colarusso.pythonanywhere.com/','GET','','','','json_doc','_blank')]: Want to see your results?
+	Q(4.2): Your client's criminal case should not affect his/her immigration status. GOTO:1
 A: I don't know
-	Q(3.3): You should consult an immigration attorney. GOTO:county
+	Q(4.3): Your client should consult an immigration attorney. 
+	A:[javascript:submit2('http://colarusso.pythonanywhere.com/','GET','','','','json_doc','_blank')] Print this summary for the immigration attorney.
+		Q(4.3.1): Would you like to find an immigration attorney?
+		A: Yes
+			Q(4.3.1.1):GOTO:county
+		A: No
+			Q(4.3.1.2):GOTO:1
 
-Q(county): Let me help you find an immigration attorney. Which county does your client live in?
+Q(county): Let me help your client find an immigration attorney. Which county does your client live in?
 A[javascript:parent.$('#town').val('42.3401,-71.0689,13')]: El Paso County
-	Q(4.1):GOTO:view
+	Q(5.1):GOTO:view
 A[javascript:parent.$('#town').val('42.3918,-71.0398456,14')]: Hudspeth County
-	Q(4.2):GOTO:view
+	Q(5.2):GOTO:view
 
 Q(view): Would you like a list or a map?
 A[javascript:parent.$('#radio-choice-h-2a').prop('checked', true);parent.$('#radio-choice-h-2b').prop('checked', false);parent.list_page();parent.results_page();]: List
-	Q(5.1):GOTO:1
+	Q(6.1):GOTO:1
 A[javascript:parent.$('#radio-choice-h-2a').prop('checked', false);parent.$('#radio-choice-h-2b').prop('checked', true);parent.list_page();parent.results_page();]: Map
-	Q(5.2):GOTO:1
-A:[javascript:submit2('http://colarusso.pythonanywhere.com/','GET','','','','json_doc','_blank')] Print summary
+	Q(6.2):GOTO:1
 
-Q(deportq): Are you charged with any of these crimes? Aggravated Felonies; Crimes Involving Moral Turpitude; Controlled Substance Offenses; <a href="https://framework.esc18.net/display/Webforms/ESC18-FW-Citation.aspx?ID=2734">Firearm</a> Violations; <a href="https://statelaws.findlaw.com/texas-law/texas-domestic-violence-laws.html">Domestic Violence</a>; Smuggling aliens; Terrorist Activities
+Q(deportq): Is your client charged with any of these crimes? Aggravated Felonies; Crimes Involving Moral Turpitude; Controlled Substance Offenses; <a href="https://framework.esc18.net/display/Webforms/ESC18-FW-Citation.aspx?ID=2734">Firearm</a> Violations; <a href="https://statelaws.findlaw.com/texas-law/texas-domestic-violence-laws.html">Domestic Violence</a>; Smuggling aliens; Terrorist Activities
 A: Yes
-	Q(6.1): GOTO:deport
+	Q(7.1):GOTO:deport
 A: No
-	Q(6.2): GOTO:inadmitq
+	Q(7.2):GOTO:inadmitq
 A: I don't know
-	Q(6.3): GOTO:inadmitq
+	Q(7.3):GOTO:4.3
 
-Q(deport): These are grounds of deportability and will probably affect your client's immigration status. GOTO:county
-Q(inadmit): These are grounds of inadmissibility and will probably affect your client’s immigration status. GOTO:county
-
+Q(deport): These are grounds of deportability and will probably affect your client's immigration status. 
+A:[javascript:submit2('http://colarusso.pythonanywhere.com/','GET','','','','json_doc','_blank')] Print this summary for the immigration attorney.
+	Q(8.1): Would you like to find an immigration attorney?
+	A: Yes
+		Q(8.1.1):GOTO:county
+	A: No
+		Q(8.1.2):GOTO:1
+Q(inadmit): These are grounds of inadmissibility and will probably affect your client’s immigration status. 
+A:[javascript:submit2('http://colarusso.pythonanywhere.com/','GET','','','','json_doc','_blank')] Print this summary for the immigration attorney.
+	Q(9.1): Would you like to find an immigration attorney?
+	A: Yes
+		Q(9.1.1):GOTO:county
+	A: No
+		Q(9.1.2):GOTO:1
