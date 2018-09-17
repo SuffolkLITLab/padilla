@@ -1,24 +1,50 @@
 Before:
-<p style="background:yellow;padding:8px;margin:20px 0 0 0;">This project is in early development. You should not rely on it as a source of legal information. <b>It is likely incomplete</b>.</p>
-<p>Answer the following questions to [brief description here]</p>
+<p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
+<p>Answer the following questions to determine if your client need to further consult an immigration attorney due to their criminal case <a href="javascript:$.mobile.changePage($('#about', parent.document), { transition: 'slide'})">Learn more</a>.</p>
 
-Q(1): What would you like to do?
-A: Conduct a guided interview.
-	Q(1.1):GOTO:interview
-A: Find an immigration attorney.
-	Q(region): Pick a region?
-	A[javascript:parent.$('#town').val('31.6945388,-106.5801766,10')]: El Paso County
-		Q(1.2.1):GOTO:view
-	A[javascript:parent.$('#town').val('31.3145064,-106.0130177,9')]: Hudspeth County
-		Q(1.2.2):GOTO:view
+Q(1): Does your client currently have a criminal case pending?
+A: Yes
+	Q(1.1):Is your client born in the US?
+	A: Yes
+		Q(1.1.1): There are no immigration concerns
+	A: No
+		Q(1.1.2): GOTO:citizen
+A: No
+	Q(1.2): This chatbot is not suitable for you.
+
+Q(citizen): Is your client a US citizen?
+A: Yes
+	Q(2.1): Please do further research on applicability.
+A: No
+	Q(2.2): GOTO:deportq
+	
+Q(inadmitq): Are you charged with any of these crimes? Controlled Substances; Multiple Offenses; Prostitution
+A: Yes
+	Q(3.1): GOTO:inadmit
+A: No
+	Q(3.2): Your client's criminal case should not affect his/her immigration status.
+A: I don't know
+	Q(3.3): You should consult an immigration attorney. GOTO:county
+
+Q(county): Let me help you find an immigration attorney. Which county does your client live in?
+A[javascript:parent.$('#town').val('42.3401,-71.0689,13')]: El Paso County
+	Q(4.1):GOTO:view
+A[javascript:parent.$('#town').val('42.3918,-71.0398456,14')]: Hudspeth County
+	Q(4.2):GOTO:view
 
 Q(view): Would you like a list or a map?
 A[javascript:parent.$('#radio-choice-h-2a').prop('checked', true);parent.$('#radio-choice-h-2b').prop('checked', false);parent.list_page();parent.results_page();]: List
-	Q(2.1):GOTO:1
+	Q(5.1):GOTO:1
 A[javascript:parent.$('#radio-choice-h-2a').prop('checked', false);parent.$('#radio-choice-h-2b').prop('checked', true);parent.list_page();parent.results_page();]: Map
-	Q(2.2):GOTO:1
+	Q(5.2):GOTO:1
 
-Q(interview): Questions go here
-A: track one
-A: track two
-	Q(3.2):You should consult with an immigration attorney. GOTO:region
+Q(deportq): Are you charged with any of these crimes? Aggravated Felonies; Crimes Involving Moral Turpitude; Controlled Substance Offenses; Firearm Violations; Domestic Violence; Smuggling aliens; Terrorist Activities
+A: Yes
+	Q(6.1): GOTO:deport
+A: No
+	Q(6.2): GOTO:inadmitq
+A: I don't know
+	Q(6.3): GOTO:inadmitq
+
+Q(deport): These are grounds of deportability and will probably affect your client's immigration status. GOTO:county
+Q(inadmit): These are grounds of inadmissibility and will probably affect your client’s immigration status. GOTO:county
