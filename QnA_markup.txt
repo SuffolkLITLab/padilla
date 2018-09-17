@@ -1,4 +1,5 @@
-Before:
+Before: <input type="hidden" name="name" value="Padilla summary"/>
+<input type="hidden" name="docx_uri" value="https://gabriele1993.github.io/ctl/Padilla%20summary.docx"/>
 <p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
 <p>Answer the following questions to determine if your client need to further consult an immigration attorney due to their criminal case <a href="javascript:$.mobile.changePage($('#about', parent.document), { transition: 'slide'})">Learn more</a>.</p>
 
@@ -23,6 +24,7 @@ A: Yes
 	Q(3.1): GOTO:inadmit
 A: No
 	Q(3.2): Your client's criminal case should not affect his/her immigration status.
+	A:[javascript:submit2('http://colarusso.pythonanywhere.com/','GET','','','','json_doc','_blank')]: Want to see your results?
 A: I don't know
 	Q(3.3): You should consult an immigration attorney. GOTO:county
 
@@ -37,6 +39,7 @@ A[javascript:parent.$('#radio-choice-h-2a').prop('checked', true);parent.$('#rad
 	Q(5.1):GOTO:1
 A[javascript:parent.$('#radio-choice-h-2a').prop('checked', false);parent.$('#radio-choice-h-2b').prop('checked', true);parent.list_page();parent.results_page();]: Map
 	Q(5.2):GOTO:1
+A:[javascript:submit2('http://colarusso.pythonanywhere.com/','GET','','','','json_doc','_blank')] Print summary
 
 Q(deportq): Are you charged with any of these crimes? Aggravated Felonies; Crimes Involving Moral Turpitude; Controlled Substance Offenses; <a href="https://framework.esc18.net/display/Webforms/ESC18-FW-Citation.aspx?ID=2734">Firearm</a> Violations; <a href="https://statelaws.findlaw.com/texas-law/texas-domestic-violence-laws.html">Domestic Violence</a>; Smuggling aliens; Terrorist Activities
 A: Yes
@@ -48,3 +51,4 @@ A: I don't know
 
 Q(deport): These are grounds of deportability and will probably affect your client's immigration status. GOTO:county
 Q(inadmit): These are grounds of inadmissibility and will probably affect your client’s immigration status. GOTO:county
+
