@@ -18,7 +18,7 @@ A: Yes
 A: No
 	Q(2.2): GOTO:deportq
 	
-Q(inadmitq): Are you charged with any of these crimes? Controlled Substances; Multiple Offenses; Prostitution
+Q(inadmitq): Are you charged with any of these crimes? <a href="https://statelaws.findlaw.com/texas-law/texas-drug-possession-laws.html">Controlled Substances</a?; Multiple Offenses; <a href="https://statelaws.findlaw.com/texas-law/texas-prostitution-laws.html">Prostitution</a>
 A: Yes
 	Q(3.1): GOTO:inadmit
 A: No
@@ -38,7 +38,7 @@ A[javascript:parent.$('#radio-choice-h-2a').prop('checked', true);parent.$('#rad
 A[javascript:parent.$('#radio-choice-h-2a').prop('checked', false);parent.$('#radio-choice-h-2b').prop('checked', true);parent.list_page();parent.results_page();]: Map
 	Q(5.2):GOTO:1
 
-Q(deportq): Are you charged with any of these crimes? Aggravated Felonies; Crimes Involving Moral Turpitude; Controlled Substance Offenses; Firearm Violations; Domestic Violence; Smuggling aliens; Terrorist Activities
+Q(deportq): Are you charged with any of these crimes? Aggravated Felonies; Crimes Involving Moral Turpitude; Controlled Substance Offenses; <a href="https://framework.esc18.net/display/Webforms/ESC18-FW-Citation.aspx?ID=2734">Firearm</a> Violations; <a href="https://statelaws.findlaw.com/texas-law/texas-domestic-violence-laws.html">Domestic Violence</a>; Smuggling aliens; Terrorist Activities
 A: Yes
 	Q(6.1): GOTO:deport
 A: No
