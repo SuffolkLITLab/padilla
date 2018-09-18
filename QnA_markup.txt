@@ -1,7 +1,7 @@
 Before: <input type="hidden" name="name" value="Padilla summary"/>
 <input type="hidden" name="docx_uri" value="https://gabriele1993.github.io/ctl/Padilla%20summary.docx"/>
-<p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
-<p>Answer the following questions to determine if your client need to further consult an immigration attorney due to their criminal case.</p>
+<p style="background:yellow;padding:8px;margin:20px 0 0 0;">This project is in early development. You should not rely on it as a source of legal information. <b>It is  incomplete</b>.</p>
+<p>Answer the following questions to [brief description here]</p><p>Answer the following questions to determine if your client need to further consult an immigration attorney due to their criminal case.</p>
 
 Q(1): What would you like to do?
 A: Conduct a guided interview.
